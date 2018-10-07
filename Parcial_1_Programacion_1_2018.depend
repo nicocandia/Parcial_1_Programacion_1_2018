@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1538863915 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Afiche.h"
+	"Cliente.h"
+
+1538862771 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.h
+
+1538878791 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.h
+
+1538880766 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Cliente.h"
+

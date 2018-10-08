@@ -7,8 +7,9 @@
 
 static int isLetras(char*pBuffer);
 static int verificarCuitoCuil(char*arreglo);
+static int getString(char* pBuffer, int limite);
 
-int getString(char* pBuffer, int limite)
+static int getString(char* pBuffer, int limite)
 {
     char bufferString [4096];
     int retorno = -1;
@@ -334,18 +335,6 @@ int utn_getCuiloCuit(char *pBuffer,int limite,int reintentos,char* msj,char*msjE
     return retorno;
 }
 
-void imprimir_clientes(Cliente*clientes,int tamanio)
-{
-    int i=0;
-    for(i=0;i<tamanio;i++)
-        {
-            if(clientes[i].estaVacio==FALSE)
-                {
-                    printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d\n",clientes[i].nombre,clientes[i].apellido,clientes[i].cuit,clientes[i].id,clientes[i].estaVacio);
-                }
-        }
-}
-
 int verificarExiste_idCliente(int id,Cliente *clientes)
 {
     int i;
@@ -359,6 +348,19 @@ int verificarExiste_idCliente(int id,Cliente *clientes)
                 }
         }
         return retorno;
+}
+
+void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id)
+{
+    int i=0;
+    for(i=0;i<tamanio;i++)
+        {
+            if(clientes[i].estaVacio==FALSE && clientes[i].id==id)
+                {
+                    printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d\n",clientes[i].nombre,clientes[i].apellido,clientes[i].cuit,clientes[i].id,clientes[i].estaVacio);
+                    break;
+                }
+        }
 }
 
 

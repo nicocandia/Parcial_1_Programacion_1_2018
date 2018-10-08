@@ -66,7 +66,7 @@ int buscarLugarlibre_Afiche(Afiche*afiches,int tamanio)
     return retornoIndice;
 }
 
-int modificar_Datos_Afiche(int id,Afiche*afiches)
+int modificar_Datos_Afiche(int id,Afiche*afiches,int tamanio_Afiches)
 {
     int i;
     int cantidadAuxiliar;
@@ -74,9 +74,9 @@ int modificar_Datos_Afiche(int id,Afiche*afiches)
     int opcion;
     int retorno=-1;
 
-    for(i=0;i<1000;i++)
+    for(i=0;i<tamanio_Afiches;i++)
     {
-        if(afiches[i].id==id )
+        if(afiches[i].id==id && afiches[i].estaVacio==FALSE && strcmp(afiches[i].estado,"a cobrar")==0)
         {
 
             if(utn_getInt(&opcion,"\nIngrese 1 para cambiar cantidad de afiches, 2 para cambiar zona,  3 para ambos \n","\nError opcion no valida",1,3,3)==0)
@@ -120,20 +120,6 @@ int modificar_Datos_Afiche(int id,Afiche*afiches)
 return retorno;
 }
 
-void imprimir_afiches(Afiche*afiches,int tamanio)
-{
-    int i;
-    for(i=0;i<tamanio;i++)
-    {
-        if(afiches[i].estaVacio==FALSE)
-        {
-        printf("\nNOMBRE ARCHIVO:%s \nESTADO:%s \nZONA:%d \nCANTIDAD AFICHES:%d \nID:%d \nID CLIENTE:%d \nESTA VACIO:%d \n",afiches[i].nombreArchivo,afiches[i].estado,afiches[i].zona,afiches[i].cantidadAfiche,afiches[i].id,afiches[i].idCliente,afiches[i].estaVacio);
-
-        }
-    }
-
-}
-
 int eliminarCliente_ytodassusVentas(Afiche*afiches,int id,int tamanio)
 {
     int i;
@@ -169,4 +155,49 @@ int generarID_Afiche()
     static int contID_Afiche=0;
 
     return contID_Afiche++;
+}
+
+int imprimir_Datos_clienteSegunIdAfiche(Cliente*clientes,Afiche*afiches,int tamanio_clientes,int tamanio_afiches,int idAfiche)
+{
+    int i;
+    int retorno=-1;
+    int idClienteAuxiliar;
+
+    for(i=0;i<tamanio_afiches;i++)
+        {
+           if(afiches[i].id==idAfiche && afiches[i].estaVacio==FALSE)
+            {
+                idClienteAuxiliar=afiches[i].idCliente;
+                imprimir_cliente_porIdcliente(clientes,tamanio_clientes,idClienteAuxiliar);
+                retorno=0;
+                break;
+            }
+        }
+    return retorno;
+}
+
+void modificarEstadoAfiche_porId(Afiche*afiches,int tamanio_afiches,int idAfiche)
+{
+    int i;
+    for(i=0;i<tamanio_afiches;i++)
+        {
+            if(afiches[i].id==idAfiche && afiches[i].estaVacio==FALSE)
+                {
+                    strncpy(afiches[i].estado,"Cobrada",50);
+                }
+        }
+}
+
+void imprimir_afiches(Afiche*afiches,int tamanio)
+{
+    int i;
+    for(i=0;i<tamanio;i++)
+    {
+        if(afiches[i].estaVacio==FALSE)
+        {
+        printf("\nNOMBRE ARCHIVO:%s \nESTADO:%s \nZONA:%d \nCANTIDAD AFICHES:%d \nID:%d \nID CLIENTE:%d \nESTA VACIO:%d \n",afiches[i].nombreArchivo,afiches[i].estado,afiches[i].zona,afiches[i].cantidadAfiche,afiches[i].id,afiches[i].idCliente,afiches[i].estaVacio);
+
+        }
+    }
+
 }

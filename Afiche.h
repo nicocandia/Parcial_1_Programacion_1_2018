@@ -1,6 +1,6 @@
 #ifndef AFICHE_H_INCLUDED
 #define AFICHE_H_INCLUDED
-
+#include "Cliente.h"
 typedef struct
 {
     int id;
@@ -18,14 +18,18 @@ int inicializar_Afiche(Afiche*afiches,int tamanio);
 
 int buscarLugarlibre_Afiche(Afiche*afiches,int tamanio);
 
-void imprimir_afiches(Afiche*afiches,int tamanio);
-
-int modificar_Datos_Afiche(int id,Afiche*afiches);
+int modificar_Datos_Afiche(int id,Afiche*afiches,int tamanio_Afiches);
 
 int eliminarCliente_ytodassusVentas(Afiche*afiches,int id,int tamanio);
 
 int verificarExiste_idAfiche(int id,Afiche *afiches);
 
 int generarID_Afiche();
+
+int imprimir_Datos_clienteSegunIdAfiche(Cliente*clientes,Afiche*afiches,int tamanio_clientes,int tamanio_afiches,int idAfiche);
+
+void modificarEstadoAfiche_porId(Afiche*afiches,int tamanio_afiches,int idAfiche);
+
+void imprimir_afiches(Afiche*afiches,int tamanio);
 
 #endif // AFICHE_H_INCLUDED

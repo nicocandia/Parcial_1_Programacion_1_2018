@@ -32,4 +32,6 @@ void modificarEstadoAfiche_porId(Afiche*afiches,int tamanio_afiches,int idAfiche
 
 void imprimir_afiches(Afiche*afiches,int tamanio);
 
+int utn_getArchivo(char *pBuffer,int limite,int reintentos,char* msj,char*msjError);
+
 #endif // AFICHE_H_INCLUDED

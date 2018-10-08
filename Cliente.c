@@ -5,6 +5,7 @@
 #define TRUE 1
 #define FALSE 0
 
+
 static int isLetras(char*pBuffer);
 static int verificarCuitoCuil(char*arreglo);
 static int getString(char* pBuffer, int limite);
@@ -102,21 +103,6 @@ int dardeAlta_Cliente(Cliente*cliente,int indice,int tamanio)
     return dadodeAlta;
 }
 
-/*int pantalla_Imprimir(Pantalla*pantalla,int tamanio)
-{
-    int i;
-    int retorno=-1;
-    for(i=0;i<tamanio;i++)
-        {
-            if(pantalla[i].isEmpty==FALSE)
-                {
-                    printf("\nNOMBRE:%s \nDIRECCION:%s \nTIPO:%d \nID:%d \nPRECIO:%.2f \nISEMPTY:%d \n",pantalla[i].nombre,pantalla[i].direccion,pantalla[i].tipo,pantalla[i].id,pantalla[i].precio,pantalla[i].isEmpty);
-                    retorno=0;
-                }
-        }
-        return retorno;
-    }*/
-
 int buscarLugarlibre_Cliente(Cliente*cliente,int tamanio)
 {
     int i;
@@ -204,22 +190,23 @@ int utn_getLetras(char *pBuffer,int limite,int reintentos,char* msj,char*msjErro
     }
     return retorno;
 }
-static int isLetras(char*pBuffer){
-    int retorno=-1;
+static int isLetras(char*pArreglo){
+    int retorno=0;
     int i=0;
-    if(pBuffer!=NULL){
-        do{
-            if((*(pBuffer+i)<65||*(pBuffer+i)>90) && (*(pBuffer+i)<97||*(pBuffer+i)>122)){
-                break;
+    char auxiliar=pArreglo[i];
+    while(auxiliar!='\0')
+        {
+            if(!((auxiliar>='a' && auxiliar<='z')||(auxiliar>='A' && auxiliar<='Z')))
+                {
+                    retorno=-1;
+                    break;
+                }
+                i++;
+                auxiliar=pArreglo[i];
             }
-            i++;
-        }while(i<strlen(pBuffer));
-        if(i==strlen(pBuffer)){
-            retorno=0;
-        }
-    }
     return retorno;
 }
+
 
 int modificarDatos_Cliente(Cliente*clientes,int tamanio,int indice)
  {
@@ -362,5 +349,4 @@ void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id)
                 }
         }
 }
-
 

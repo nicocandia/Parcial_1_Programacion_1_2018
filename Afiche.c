@@ -6,6 +6,9 @@
 #define TRUE 1
 #define FALSE 0
 
+static int isArchivo(char*pArreglo);
+static int getString(char* pBuffer, int limite);
+
 int vender_Afiche(Afiche*afiches,int indice,int tamanio,int id)
 {
     int dadodeAlta=-1;
@@ -18,7 +21,7 @@ int vender_Afiche(Afiche*afiches,int indice,int tamanio,int id)
         {
         if(utn_getInt(&cantidadAficheAuxiliar,"\nIngrese cantidad\n","\nerror\n",1,1000,3)==0
             &&
-            utn_getLetras(nombreArchivoAuxiliar,50,3,"\ningrese nombre de archivo\n","\nnerror nombre no valido\n")==0
+            utn_getArchivo(nombreArchivoAuxiliar,50,3,"\ningrese nombre de archivo\n","\nnerror nombre no valido\n")==0
             &&
 
             utn_getInt(&zonaAuxiliar,"\ningrese 1 para CABA , 2 para ZONA SUR , 3 para ZONA OESTE\n","\nerror, zona no valida\n",1,3,3)==0)
@@ -200,4 +203,69 @@ void imprimir_afiches(Afiche*afiches,int tamanio)
         }
     }
 
+}
+
+int utn_getArchivo(char *pBuffer,int limite,int reintentos,char* msj,char*msjError)
+{
+    int retorno=-1;
+    char buffer[limite];
+    if(pBuffer!=NULL && limite >0 && reintentos >=0){
+        do{
+            reintentos--;
+            printf("\n%s",msj);
+            if(getString(buffer,limite)==0 && isArchivo(buffer)==0){
+                strncpy(pBuffer,buffer,limite);
+                retorno=0;
+                break;
+            }else
+                printf("\n%s",msjError);
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+static int isArchivo(char*pArreglo){
+    int retorno;
+    int i=0;
+    int contadorPunto=0;
+    char auxiliar=pArreglo[i];
+    while(auxiliar!='\0')
+        {
+            if(!((auxiliar>='0' && auxiliar<='9')||(auxiliar>='a' && auxiliar<='z')||(auxiliar>='A' && auxiliar<='Z') ||auxiliar=='.'))
+                {
+                    retorno=-1;
+                    break;
+                }
+                if(auxiliar=='.')
+                    {
+                        contadorPunto++;
+                    }
+                i++;
+                auxiliar=pArreglo[i];
+            }
+            if(contadorPunto==1)
+                {
+                    retorno=0;
+                }
+    return retorno;
+}
+
+static int getString(char* pBuffer, int limite)
+{
+    char bufferString [4096];
+    int retorno = -1;
+    if(pBuffer != NULL && limite > 0)
+    {
+        fflush(stdin);
+        fgets(bufferString,sizeof(bufferString),stdin);
+        if(bufferString[strlen(bufferString)-1]=='\n')
+        {
+            bufferString[strlen(bufferString)-1]='\0';
+        }
+        if(strlen(bufferString) <= limite)
+        {
+            strncpy(pBuffer,bufferString,limite);
+            retorno = 0;
+        }
+    }
+    return retorno;
 }

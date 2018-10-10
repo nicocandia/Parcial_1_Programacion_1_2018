@@ -21,7 +21,7 @@ int vender_Afiche(Afiche*afiches,int indice,int tamanio,int id)
         {
         if(utn_getInt(&cantidadAficheAuxiliar,"\nIngrese cantidad\n","\nerror\n",1,1000,3)==0
             &&
-            utn_getArchivo(nombreArchivoAuxiliar,50,3,"\ningrese nombre de archivo\n","\nnerror nombre no valido\n")==0
+            utn_getArchivo(nombreArchivoAuxiliar,50,3,"\ningrese nombre de archivo\n","\nerror nombre tiene que tener el formato 'nombre.tipodearchivo n'\n")==0
             &&
 
             utn_getInt(&zonaAuxiliar,"\ningrese 1 para CABA , 2 para ZONA SUR , 3 para ZONA OESTE\n","\nerror, zona no valida\n",1,3,3)==0)

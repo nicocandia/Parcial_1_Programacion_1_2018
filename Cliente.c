@@ -259,7 +259,7 @@ int modificarDatos_Cliente(Cliente*clientes,int tamanio,int indice)
         {
             for (i=0;i<tamanio;i++)
                 {
-                    if(clientes[i].id==id)
+                    if(clientes[i].id==id && clientes[i].estaVacio==FALSE)
                         {
                             clientes[i].estaVacio=TRUE;
                             retorno=0;

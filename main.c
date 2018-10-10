@@ -73,7 +73,7 @@ int main()
                                             if(dardeBaja_Cliente(clientes,id,TAMANIO_CLIENTE)==0 && eliminarCliente_ytodassusVentas(afiches,id,TAMANIO_AFICHE)==0)
                                             {
                                                 printf("\nSe ha dado de baja el cliente y todas sus ventas\n");
-                                            }else if (dardeBaja_Cliente(clientes,id,TAMANIO_CLIENTE)==0)
+                                            }else if (eliminarCliente_ytodassusVentas(afiches,id,TAMANIO_AFICHE)==-1)
                                             {
                                                 printf("\nSe ha dado de baja el cliente\n");
                                             }

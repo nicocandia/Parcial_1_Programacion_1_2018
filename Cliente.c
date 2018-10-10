@@ -89,7 +89,7 @@ int dardeAlta_Cliente(Cliente*cliente,int indice,int tamanio)
 
             &&utn_getLetras(apellidoAuxiliar,50,3,"\ningrese apellido\n","\nerror\n")==0
 
-            &&utn_getCuiloCuit(cuitAuxiliar,50,3,"\ningrese cuit\n","\n error cuit no valido\n")==0)
+            &&utn_getCuiloCuit(cuitAuxiliar,50,3,"\ningrese cuit\n","\n error, cuit debe ser del formato xx-xxxxxxxx-x\n")==0)
             {
                     strncpy(cliente[indice].nombre,nombreAuxiliar,50);
                     strncpy(cliente[indice].apellido,apellidoAuxiliar,50);
@@ -218,7 +218,7 @@ int modificarDatos_Cliente(Cliente*clientes,int tamanio,int indice)
 
      if (indice>=0 && indice<tamanio)
         {
-            if(utn_getInt(&opcion,"\nIngrese:\n1 para modificar nombre\n2 para modificar apellido\n3 para modificar cuit\n","\Error, ingrese opcion valida\n",1,3,3)==0)
+            if(utn_getInt(&opcion,"\nIngrese:\n1 para modificar nombre\n2 para modificar apellido\n3 para modificar cuit\n","\nError, ingrese opcion valida\n",1,3,3)==0)
                 {
                     switch(opcion)
                     {
@@ -239,20 +239,16 @@ int modificarDatos_Cliente(Cliente*clientes,int tamanio,int indice)
                             break;
 
                         case 3:
-                            if(utn_getCuiloCuit(cuitAuxiliar,50,3,"\nIngrese nuevo cuit\n","\nError cuit no valido\n")==0)
+                            if(utn_getCuiloCuit(cuitAuxiliar,50,3,"\nIngrese nuevo cuit\n","\nerror, cuit debe ser del formato xx-xxxxxxxx-x\n")==0)
                                 {
                                     strncpy(clientes[indice].cuit,cuitAuxiliar,50);
                                     retorno=0;
                                 }
                             break;
-
-
-
-                    }
+                        }
                 }
         }
-
-     return retorno;
+    return retorno;
  }
 
  int dardeBaja_Cliente(Cliente*clientes,int id,int tamanio)

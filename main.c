@@ -22,7 +22,7 @@ int main()
     printf("\n <<<<<<BIENVENIDO>>>>>>\n");
     do
         {
-            if(utn_getInt(&opcion,"\n1-ALTA CLIENTE \n\n2-MODIFICAR DATOS DEL CLIENTE \n\n3-BAJA DE CLIENTE \n\n4-VENDER AFICHES\n\n5-EDITAR VENTA\n\n6-COBRAR VENTA\n\n7-IMPRIMIR CLIENTES\n\n8-SALIR\n\nOPCION??\n","\nError,opcion invalida\n",1,8,3)==0)
+            if(utn_getInt(&opcion,"\n1-ALTA CLIENTE \n\n2-MODIFICAR DATOS DEL CLIENTE \n\n3-BAJA DE CLIENTE \n\n4-VENDER AFICHES\n\n5-EDITAR VENTA\n\n6-COBRAR VENTA\n\n7-IMPRIMIR CLIENTES\n\n8-INFORMAR\n\n9-SALIR\n\nOPCION??\n","\nError,opcion invalida\n",1,9,3)==0)
             {
                 switch(opcion)
                     {
@@ -158,9 +158,18 @@ int main()
                     case 7:
                         imprimir_clientes_ConventasAcobrarquePosee(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
                         break;
+
+                    case 8:
+                        //if(utn_getInt(&opcion,"1-Cliente con menos ventas a informar\n2-Cliente con menos ventas cobradas\n3-Cliente con menos ventas\n4-zona con afiches mas vendidos\n5-Cliente que compro menos afiches
+                        //")==0)
+                        //{
+
+                        //}
+                        Imprimir_clienteMenosventas(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        break;
                         }
                         }
-                }while(opcion!=8);
+                }while(opcion!=9);
 
     return 0;
 }

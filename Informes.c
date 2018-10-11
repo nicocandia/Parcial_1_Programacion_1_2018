@@ -36,3 +36,46 @@ void imprimir_clientes_ConventasAcobrarquePosee(Cliente*clientes,Afiche*afiches,
                 }
     }
 }
+
+void Imprimir_clienteMenosventas(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
+{
+    int i;
+    int indiceClientemenosVentas=-1;
+    int menosventas;
+    int auxiliarCantidadventas_lugarI;
+    int auxiliarCantidadventas_lugarImasuno;
+    int flagtermindeOrdenar=1;
+
+    while(flagtermindeOrdenar==1)
+    {
+        flagtermindeOrdenar=0;
+
+        for(i=0;i<tamanio_cliente-1;i++)
+        {
+            if(clientes[i].estaVacio==FALSE && clientes[i+1].estaVacio==FALSE)
+            {
+                auxiliarCantidadventas_lugarI=cantidad_Ventasposee_Cliente(afiches,tamanio_afiche,clientes[i].id);
+                auxiliarCantidadventas_lugarImasuno=cantidad_Ventasposee_Cliente(afiches,tamanio_afiche,clientes[i+1].id);
+
+                if(auxiliarCantidadventas_lugarI<=auxiliarCantidadventas_lugarImasuno)
+                {
+                    indiceClientemenosVentas=i;
+                    menosventas=auxiliarCantidadventas_lugarI;
+                    flagtermindeOrdenar=1;
+
+                }
+            }
+
+        }
+    }
+
+    if(indiceClientemenosVentas>=0)
+    {
+        printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d  CANTIDAD DE VENTAS A COBRAR:%d \n",clientes[indiceClientemenosVentas].nombre,clientes[indiceClientemenosVentas].apellido,clientes[indiceClientemenosVentas].cuit,clientes[indiceClientemenosVentas].id,clientes[indiceClientemenosVentas].estaVacio,menosventas);
+    }
+    else
+    {
+                printf("\nerror , no hay ventas cargadas\n");
+    }
+}
+

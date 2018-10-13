@@ -6,9 +6,9 @@
 #define FALSE 0
 #define TRUE 1
 
-static int cantidad_Ventasposee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente);
+static int cantidad_VentasaCobrarPosee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente);
 
-static int cantidad_Ventasposee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente)
+static int cantidad_VentasaCobrarPosee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente)
 {
     int i;
     int acumuladorVenta=0;
@@ -20,7 +20,7 @@ static int cantidad_Ventasposee_Cliente(Afiche*afiches,int tamanio_Afiche,int id
                 acumuladorVenta++;
             }
     }
-    return acumuladorVenta;
+    return (acumuladorVenta);
 }
 
 void imprimir_clientes_ConventasAcobrarquePosee(Cliente*clientes,Afiche*afiches,int tamanio_clientes,int tamanio_afiches)
@@ -31,51 +31,42 @@ void imprimir_clientes_ConventasAcobrarquePosee(Cliente*clientes,Afiche*afiches,
         {
             if(clientes[j].estaVacio==FALSE )
                 {
-                ventas=cantidad_Ventasposee_Cliente(afiches,tamanio_afiches,clientes[j].id);
+                ventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiches,clientes[j].id);
                 printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d  CANTIDAD DE VENTAS A COBRAR:%d \n",clientes[j].nombre,clientes[j].apellido,clientes[j].cuit,clientes[j].id,clientes[j].estaVacio,ventas);
                 }
     }
 }
-
-void Imprimir_clienteMenosventas(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
+void imprimirCliente_conMenosventasaCobrar(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
 {
     int i;
-    int indiceClientemenosVentas=-1;
-    int menosventas;
-    int auxiliarCantidadventas_lugarI;
-    int auxiliarCantidadventas_lugarImasuno;
-    int flagtermindeOrdenar=1;
+    int menosventas=0;
+    int idClientemenosVentas=-1;
+    int flagPrimeraCantidadminima=0;
 
-    while(flagtermindeOrdenar==1)
-    {
-        flagtermindeOrdenar=0;
-
-        for(i=0;i<tamanio_cliente-1;i++)
+        for(i=0;i<tamanio_cliente;i++)
         {
-            if(clientes[i].estaVacio==FALSE && clientes[i+1].estaVacio==FALSE)
+            if(clientes[i].estaVacio==FALSE)
             {
-                auxiliarCantidadventas_lugarI=cantidad_Ventasposee_Cliente(afiches,tamanio_afiche,clientes[i].id);
-                auxiliarCantidadventas_lugarImasuno=cantidad_Ventasposee_Cliente(afiches,tamanio_afiche,clientes[i+1].id);
-
-                if(auxiliarCantidadventas_lugarI<=auxiliarCantidadventas_lugarImasuno)
+                if(flagPrimeraCantidadminima==0)
                 {
-                    indiceClientemenosVentas=i;
-                    menosventas=auxiliarCantidadventas_lugarI;
-                    flagtermindeOrdenar=1;
-
+                    menosventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id);
+                    idClientemenosVentas=clientes[i].id;
+                    flagPrimeraCantidadminima=1;
+                }
+                else if(cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id<menosventas))
+                {
+                    menosventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id);
+                    idClientemenosVentas=clientes[i].id;
+                    printf("\nid:%d -menosventas:%d\n",idClientemenosVentas,menosventas);
                 }
             }
-
         }
-    }
 
-    if(indiceClientemenosVentas>=0)
-    {
-        printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d  CANTIDAD DE VENTAS A COBRAR:%d \n",clientes[indiceClientemenosVentas].nombre,clientes[indiceClientemenosVentas].apellido,clientes[indiceClientemenosVentas].cuit,clientes[indiceClientemenosVentas].id,clientes[indiceClientemenosVentas].estaVacio,menosventas);
-    }
-    else
-    {
-                printf("\nerror , no hay ventas cargadas\n");
-    }
+
+    /*if(idClientemenosVentas>=0)
+        {
+            printf("\nel cliente con menos ventas es:\n");
+            imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClientemenosVentas);
+        }
+        else{printf("\nno hay ventas cargadas\n");}*/
 }
-

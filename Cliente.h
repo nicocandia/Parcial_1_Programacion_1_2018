@@ -86,5 +86,7 @@ y muestra por pantalla el cliente con todos sus datos, solo un cliente
 */
 void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id);
 
+int cliente_altaForzada(Cliente* clientes,int tamanio,char* nombre,char* apellido, char *cuit);
+
 
 #endif // CLIENTE_H_INCLUDED

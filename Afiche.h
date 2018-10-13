@@ -50,4 +50,8 @@ void imprimir_afiches(Afiche*afiches,int tamanio);
 
 int utn_getArchivo(char *pBuffer,int limite,int reintentos,char* msj,char*msjError);
 
+int afiche_altaForzada(Afiche* afiches,int tamanioAfiches,
+              Cliente* clientes, int tamanioClientes,
+              int idCliente,char* nombreArchivo,int cantidadAfiches,int zona,char *estado);
+
 #endif // AFICHE_H_INCLUDED

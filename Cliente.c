@@ -346,3 +346,27 @@ void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id)
         }
 }
 
+int cliente_altaForzada(Cliente* clientes,int tamanio,char* nombre,char* apellido, char *cuit)
+{
+    int retorno = -1;
+    int i;
+
+    if(tamanio > 0 && clientes != NULL)
+    {
+        i = buscarLugarlibre_Cliente(clientes,tamanio);
+        if(i >= 0)
+        {
+            retorno = 0;
+            strcpy(clientes[i].nombre,nombre);
+            strcpy(clientes[i].apellido,apellido);
+            strcpy(clientes[i].cuit,cuit);
+            //------------------------------
+            //------------------------------
+            clientes[i].id = generarID_Cliente();
+            clientes[i].estaVacio = FALSE;
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+

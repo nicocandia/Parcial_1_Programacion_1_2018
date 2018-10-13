@@ -19,6 +19,20 @@ int main()
     int id;
     int respuesta;
 
+    cliente_altaForzada(clientes,TAMANIO_CLIENTE,"nicolas","ruiz","23-37246232-9");
+    cliente_altaForzada(clientes,TAMANIO_CLIENTE,"alan","gomez","78-37789456-8");
+    cliente_altaForzada(clientes,TAMANIO_CLIENTE,"claudia","fernandez","78-32324623-2");
+    cliente_altaForzada(clientes,TAMANIO_CLIENTE,"david","gonzalez","14-78123456-9");
+
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo1.jpg",100,1,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo2.jpg",120,1,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo3.jpg",500,2,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo4.jpg",550,2,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,2,"archivo5.jpg",600,2,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo6.jpg",250,3,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo7.jpg",300,1,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo8.jpg",750,2,"a cobrar");
+
     printf("\n <<<<<<BIENVENIDO>>>>>>\n");
     do
         {
@@ -160,12 +174,7 @@ int main()
                         break;
 
                     case 8:
-                        //if(utn_getInt(&opcion,"1-Cliente con menos ventas a informar\n2-Cliente con menos ventas cobradas\n3-Cliente con menos ventas\n4-zona con afiches mas vendidos\n5-Cliente que compro menos afiches
-                        //")==0)
-                        //{
-
-                        //}
-                        Imprimir_clienteMenosventas(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        imprimirCliente_conMenosventasaCobrar(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
                         break;
                         }
                         }

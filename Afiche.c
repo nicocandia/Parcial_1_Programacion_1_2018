@@ -269,3 +269,34 @@ static int getString(char* pBuffer, int limite)
     }
     return retorno;
 }
+
+int afiche_altaForzada(Afiche* afiches,int tamanioAfiches,
+              Cliente* clientes, int tamanioClientes,
+              int idCliente,char* nombreArchivo,int cantidadAfiches,int zona,char *estado)
+{
+    int retorno = -1;
+    int i;
+    int posCliente;
+    if(tamanioAfiches > 0 && afiches != NULL)
+    {
+        i = buscarLugarlibre_Afiche(afiches,tamanioAfiches);
+        if(i >= 0)
+        {
+
+            posCliente = buscarCliente_porid(clientes,tamanioClientes,idCliente);
+            if(posCliente>=0)
+            {
+                afiches[i].cantidadAfiche=cantidadAfiches;
+                afiches[i].zona=zona;
+                strcpy(afiches[i].nombreArchivo,nombreArchivo);
+                strcpy(afiches[i].estado,estado);
+                //TODO
+                afiches[i].idCliente = idCliente; // relacion
+                afiches[i].estaVacio=FALSE;
+                afiches[i].id = generarID_Afiche();
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}

@@ -6,6 +6,8 @@
 #include "Informes.h"
 #define TAMANIO_CLIENTE 100
 #define TAMANIO_AFICHE 1000
+#define A_COBRAR 1
+#define COBRADO 0
 
 int main()
 {
@@ -24,14 +26,14 @@ int main()
     cliente_altaForzada(clientes,TAMANIO_CLIENTE,"claudia","fernandez","78-32324623-2");
     cliente_altaForzada(clientes,TAMANIO_CLIENTE,"david","gonzalez","14-78123456-9");
 
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo1.jpg",100,1,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo2.jpg",120,1,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo3.jpg",500,2,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo4.jpg",550,2,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,2,"archivo5.jpg",600,2,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo6.jpg",250,3,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo7.jpg",300,1,"a cobrar");
-    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo8.jpg",750,2,"a cobrar");
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo1.jpg",100,1,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,0,"archivo2.jpg",120,1,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo3.jpg",500,2,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,1,"archivo4.jpg",550,2,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,2,"archivo5.jpg",600,2,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo6.jpg",250,3,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo7.jpg",300,1,A_COBRAR);
+    afiche_altaForzada(afiches,TAMANIO_AFICHE,clientes,TAMANIO_CLIENTE,3,"archivo8.jpg",750,2,A_COBRAR);
 
     printf("\n <<<<<<BIENVENIDO>>>>>>\n");
     do
@@ -128,7 +130,7 @@ int main()
                             imprimir_afiches(afiches,TAMANIO_AFICHE);
                             if(utn_getInt(&id,"\n ingrese id de afiche\n","\n error id no valido\n",0,1000,3)==0)
                             {
-                                if(verificarExiste_idAfiche(id,afiches)==0)
+                                if(verificarExiste_idAfiche(id,afiches,TAMANIO_AFICHE)==0)
                                 {
                                     if(modificar_Datos_Afiche(id,afiches,TAMANIO_AFICHE)==0)
                                     {
@@ -148,7 +150,7 @@ int main()
                         imprimir_afiches(afiches,TAMANIO_AFICHE);
                         if(utn_getInt(&id,"\nIngrese id del afiche\n","\nerror,id no valido\n",0,1000,3)==0)
                         {
-                            if(verificarExiste_idAfiche(id,afiches)==0
+                            if(verificarExiste_idAfiche(id,afiches,TAMANIO_AFICHE)==0
                                && imprimir_Datos_clienteSegunIdAfiche(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE,id)==0)
                             {
                                 if(utn_getInt(&respuesta,"\nDESEA CONFIRMAR PARA CAMBIAR DE ESTADO\nDIGITE 1 CONFIRMAR,2 PARA NO CONFIRMAR\n","\nerror digite 1 o 2\n",1,2,3)==0)
@@ -174,7 +176,30 @@ int main()
                         break;
 
                     case 8:
+                        printf("\nA)\n");
                         imprimirCliente_conMenosventasaCobrar(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        printf("\nB)\n");
+                        imprimirCliente_conMenosventas_Cobradas(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        printf("\nC)\n");
+                        imprimirCliente_conMenosventas(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        printf("\nD)\n");
+                        imprimir_Zona_conmasAfichesVendidos(afiches,TAMANIO_AFICHE);
+                        printf("\nE)\n");
+                        imprimircliente_conMenosAfiches_vendidos(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        printf("\nF)\n");
+                        imprimircliente_conMasAfiches_aCobrar(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);;
+                        printf("\nG)\n");
+                        cantidad_clientes_Compraronmasde_500_afiches(clientes,TAMANIO_CLIENTE,afiches,TAMANIO_AFICHE);
+                        printf("\nH)\n");
+                        Imprimir_cantidad_Afiches_vendidos_porlas3zonas(afiches,TAMANIO_AFICHE);
+                        printf("\nI)\n");
+                        promedioAfiches_vendidosporCliente(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        printf("\nJ)\n");
+                        if(ordenarVentas_Porzona(afiches,TAMANIO_AFICHE)==0)
+                        {
+                            imprimir_afiches(afiches,TAMANIO_AFICHE);
+                        }else
+                        {printf("\nNo hay afiches cargados\n");}
                         break;
                         }
                         }

@@ -1,30 +1,30 @@
 # depslib dependency file v1.0
-1539394350 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.c
+1539559665 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Afiche.h"
 	"Cliente.h"
 
-1539393144 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.h
+1539463142 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\afiche.h
 	"Cliente.h"
 
-1539392430 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.h
+1539463221 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.h
 
-1539392438 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.c
+1539559742 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Cliente.h"
 
-1539396111 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\informes.c
+1539567965 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\informes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Cliente.h"
 	"Afiche.h"
 
-1539395501 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\main.c
+1539556508 source:c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -32,5 +32,5 @@
 	"Afiche.h"
 	"Informes.h"
 
-1539395357 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\informes.h
+1539567947 c:\users\candia family\desktop\nicolas\utn\parcial_1_programacion_1_2018\informes.h
 

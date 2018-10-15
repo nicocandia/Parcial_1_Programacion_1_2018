@@ -5,6 +5,9 @@
 #include "Cliente.h"
 #define TRUE 1
 #define FALSE 0
+#define A_COBRAR 1
+#define COBRADO 0
+
 
 static int isArchivo(char*pArreglo);
 static int getString(char* pBuffer, int limite);
@@ -32,7 +35,7 @@ int vender_Afiche(Afiche*afiches,int indice,int tamanio,int id)
                         afiches[indice].idCliente=id;
                         afiches[indice].estaVacio=FALSE;
                         afiches[indice].id=generarID_Afiche();
-                        strncpy(afiches[indice].estado,"a cobrar",50);
+                        afiches[indice].estado=1;
                         dadodeAlta=0;
                     }
             }
@@ -79,7 +82,7 @@ int modificar_Datos_Afiche(int id,Afiche*afiches,int tamanio_Afiches)
 
     for(i=0;i<tamanio_Afiches;i++)
     {
-        if(afiches[i].id==id && afiches[i].estaVacio==FALSE && strcmp(afiches[i].estado,"a cobrar")==0)
+        if(afiches[i].id==id && afiches[i].estaVacio==FALSE && afiches[i].estado==1)
         {
 
             if(utn_getInt(&opcion,"\nIngrese 1 para cambiar cantidad de afiches, 2 para cambiar zona,  3 para ambos \n","\nError opcion no valida",1,3,3)==0)
@@ -138,11 +141,11 @@ int eliminarCliente_ytodassusVentas(Afiche*afiches,int id,int tamanio)
     return retorno;
 }
 
-int verificarExiste_idAfiche(int id,Afiche *afiches)
+int verificarExiste_idAfiche(int id,Afiche *afiches,int tamanio_afiche)
 {
     int i;
     int retorno=-1;
-    for(i=0;i<100;i++)
+    for(i=0;i<tamanio_afiche;i++)
         {
             if(afiches[i].id==id && afiches[i].estaVacio==FALSE)
                 {
@@ -184,9 +187,9 @@ void modificarEstadoAfiche_porId(Afiche*afiches,int tamanio_afiches,int idAfiche
     int i;
     for(i=0;i<tamanio_afiches;i++)
         {
-            if(afiches[i].id==idAfiche && afiches[i].estaVacio==FALSE)
+            if(afiches[i].id==idAfiche && afiches[i].estaVacio==FALSE && afiches[i].estado==A_COBRAR)
                 {
-                    strncpy(afiches[i].estado,"Cobrada",50);
+                    afiches[i].estado=COBRADO;
                 }
         }
 }
@@ -198,7 +201,7 @@ void imprimir_afiches(Afiche*afiches,int tamanio)
     {
         if(afiches[i].estaVacio==FALSE)
         {
-        printf("\nNOMBRE ARCHIVO:%s \nESTADO:%s \nZONA:%d \nCANTIDAD AFICHES:%d \nID:%d \nID CLIENTE:%d \nESTA VACIO:%d \n",afiches[i].nombreArchivo,afiches[i].estado,afiches[i].zona,afiches[i].cantidadAfiche,afiches[i].id,afiches[i].idCliente,afiches[i].estaVacio);
+        printf("\nNOMBRE ARCHIVO:%s\tESTADO:%d\tZONA:%d\tCANTIDAD AFICHES:%d\tID:%d\tID CLIENTE:%d\tESTA VACIO:%d \n",afiches[i].nombreArchivo,afiches[i].estado,afiches[i].zona,afiches[i].cantidadAfiche,afiches[i].id,afiches[i].idCliente,afiches[i].estaVacio);
 
         }
     }
@@ -272,7 +275,7 @@ static int getString(char* pBuffer, int limite)
 
 int afiche_altaForzada(Afiche* afiches,int tamanioAfiches,
               Cliente* clientes, int tamanioClientes,
-              int idCliente,char* nombreArchivo,int cantidadAfiches,int zona,char *estado)
+              int idCliente,char* nombreArchivo,int cantidadAfiches,int zona,int estado)
 {
     int retorno = -1;
     int i;
@@ -289,7 +292,7 @@ int afiche_altaForzada(Afiche* afiches,int tamanioAfiches,
                 afiches[i].cantidadAfiche=cantidadAfiches;
                 afiches[i].zona=zona;
                 strcpy(afiches[i].nombreArchivo,nombreArchivo);
-                strcpy(afiches[i].estado,estado);
+                afiches[i].estado=estado;
                 //TODO
                 afiches[i].idCliente = idCliente; // relacion
                 afiches[i].estaVacio=FALSE;
@@ -300,3 +303,4 @@ int afiche_altaForzada(Afiche* afiches,int tamanioAfiches,
     }
     return retorno;
 }
+

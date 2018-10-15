@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Cliente.h"
+#include "Afiche.h"
 #define TRUE 1
 #define FALSE 0
 
@@ -340,7 +341,7 @@ void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id)
         {
             if(clientes[i].estaVacio==FALSE && clientes[i].id==id)
                 {
-                    printf("\n NOMBRE CLIENTE:%s  APELLIDO:%s  CUIT:%s  ID:%d  ESTA VACIO:%d\n",clientes[i].nombre,clientes[i].apellido,clientes[i].cuit,clientes[i].id,clientes[i].estaVacio);
+                    printf("\n NOMBRE CLIENTE:%s\tAPELLIDO:%s\tCUIT:%s\tID:%d\tESTA VACIO:%d\n",clientes[i].nombre,clientes[i].apellido,clientes[i].cuit,clientes[i].id,clientes[i].estaVacio);
                     break;
                 }
         }
@@ -369,4 +370,3 @@ int cliente_altaForzada(Cliente* clientes,int tamanio,char* nombre,char* apellid
     }
     return retorno;
 }
-

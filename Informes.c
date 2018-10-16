@@ -55,19 +55,21 @@ static int cantidad_VentasaTotalPosee_Cliente(Afiche*afiches,int tamanio_Afiche,
     return acumuladorVenta;
 }
 
-void imprimir_clientes_ConventasAcobrarquePosee(Cliente*clientes,Afiche*afiches,int tamanio_clientes,int tamanio_afiches)
+int imprimir_clientes_ConventasAcobrarquePosee(Cliente*clientes,Afiche*afiches,int tamanio_clientes,int tamanio_afiches)
 {
     int j=0;
     int ventas;
+    int retorno=-1;
     for(j=0;j<tamanio_clientes;j++)
         {
             if(clientes[j].estaVacio==FALSE && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiches,clientes[j].id)>0)
             {
                 ventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiches,clientes[j].id);
                 printf("\nNOMBRE CLIENTE:%s -- APELLIDO:%s -- CUIT:%s -- ID:%d -- ESTA VACIO:%d -- CANTIDAD DE VENTAS A COBRAR:%d\n",clientes[j].nombre,clientes[j].apellido,clientes[j].cuit,clientes[j].id,clientes[j].estaVacio,ventas);
+                retorno=0;
             }
         }
-
+return retorno;
 }
 void imprimirCliente_conMenosventasaCobrar(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
 {
@@ -322,7 +324,7 @@ void Imprimir_cantidad_Afiches_vendidos_porlas3zonas(Afiche*afiches,int tamanio_
     int cantidadAfichesVendidos_Zona2=cantidad_Afichesvendidospor_Zona(afiches,tamanio_afiche,2);
     int cantidadAfichesVendidos_Zona3=cantidad_Afichesvendidospor_Zona(afiches,tamanio_afiche,3);
 
-    printf("\ncantidad afiches vendidos zona 1:%d\n\ncantidad afiches vendidos zona 2:%d\n\ncantidad afiches vendidos zona 3:%d\n",cantidadAfichesVendidos_Zona1,cantidadAfichesVendidos_Zona2,cantidadAfichesVendidos_Zona3);
+    printf("\ncantidad afiches vendidos CABA:%d\n\ncantidad afiches vendidos ZONA SUR:%d\n\ncantidad afiches vendidos ZONA OESTE:%d\n",cantidadAfichesVendidos_Zona1,cantidadAfichesVendidos_Zona2,cantidadAfichesVendidos_Zona3);
 }
 
 int ordenarVentas_Porzona(Afiche*afiches,int tamanio_afiches)

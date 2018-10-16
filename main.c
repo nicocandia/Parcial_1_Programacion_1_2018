@@ -172,7 +172,12 @@ int main()
                         break;
 
                     case 7:
-                        imprimir_clientes_ConventasAcobrarquePosee(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE);
+                        if(imprimir_clientes_ConventasAcobrarquePosee(clientes,afiches,TAMANIO_CLIENTE,TAMANIO_AFICHE)==0)
+                            {
+                                printf("\nLISTADO CLIENTES CON VENTAS A COBRAR\n");
+                                printf("\n---------------------------------------------------------------------------\n");
+                            }
+                            else {printf("\nNO HAY VENTAS A COBRAR CARGADAS\n");}
                         break;
 
                     case 8:

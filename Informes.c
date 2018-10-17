@@ -8,12 +8,42 @@
 #define TRUE 1
 #define A_COBRAR 1
 #define COBRADO 0
-
+/*
+FUNCION CANTIDAD_AFICHESVENDIDOSSEGUNIDCLIENTE: recibe como argumentos un array del tipo afiche como puntero,un
+entero tamanioafiche, un entero idcliente y retorna la cantidad de afiches vendidos segun id cliente
+*/
 static int cantidadAfiches_Vendidos_segunIdcliente(Afiche*afiches,int tamanio_afiches,int idcliente);
+
+/*
+FUNCION CANTIDAD_AFICHESVENDIDOSPORZONA: recibe como argumentos un array del tipo afiche como puntero,un
+entero tamanioafiche un entero zonaElegida y retorna la cantidad de afiches vendidos segun la zona elegida
+segun id cliente
+*/
 static int cantidad_Afichesvendidospor_Zona(Afiche*afiches,int tamanio_afiche,int zonaElegida);
+
+/*
+FUNCION CANTIDAD_VENTASTOTALPOSEECLIENTE: recibe como argumentos un array del tipo afiche como puntero,un
+entero tamanioafiche un entero idcliente y retorna la cantidad de ventas totales tanto cobradas como no cobradas
+segun id cliente
+*/
 static int cantidad_VentasaTotalPosee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente);
+
+/*
+FUNCION CANTIDADAFICHES_ACOBRARSEGUNIDCLIENTE: recibe como argumentos un array del tipo afiche como puntero,un
+entero tamanioafiche un entero idcliente y retorna la cantidad de afiches a cobrar segun el id del cliente
+*/
 static int cantidadAfiches_acobrarsegunIdcliente(Afiche*afiches,int tamanio_afiches,int idcliente);
+
+/*
+FUNCION CANTIDAD_VENTASACOBRARPOSEECLIENTE: recibe como argumentos un array del tipo afiche como puntero
+entero tamanioafiche un entero idcliente y retorna la cantidad de ventas a cobrar posee el cliente
+*/
 static int cantidad_VentasaCobrarPosee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente);
+
+/*
+FUNCION CANTIDAD_VENTASCOBRADASPOSEECLIENTE: recibe como argumentos un array del tipo afiche como puntero
+entero tamanioafiche un entero idcliente y retorna la cantidad de ventas cobradas posee el cliente
+*/
 static int cantidad_VentasCobradas_Posee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente);
 
 static int cantidad_VentasaCobrarPosee_Cliente(Afiche*afiches,int tamanio_Afiche,int idCliente)

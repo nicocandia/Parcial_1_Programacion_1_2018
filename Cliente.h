@@ -43,7 +43,7 @@ int utn_getInt(  int* pInt, char* msg,
 int getInt(int* pBuffer);
 
 int verificarArregloSoloNumeros(char *pArreglo);
-
+//*------------------------------------------------------------------------------------------------------------------
 /*
 FUNCION UTN_GETLETRAS recibe como argumentos 3 char como punteros y dos tipos de datos enteros
 retorna 0 si el *pbuffer es una palabra , sino retorna -1
@@ -85,6 +85,10 @@ y muestra por pantalla el cliente con todos sus datos, solo un cliente
 */
 void imprimir_cliente_porIdcliente(Cliente*clientes,int tamanio,int id);
 
+/*
+FUNCION CLIENTE_ALTAFORZADA: recibe como argumentos un array del tipo cliente como puntero, un entero tamanio, tre  array
+del tipo char como puntero y retorna cero si se dio de alta el cliente ,sino -1
+*/
 int cliente_altaForzada(Cliente* clientes,int tamanio,char* nombre,char* apellido, char *cuit);
 
 

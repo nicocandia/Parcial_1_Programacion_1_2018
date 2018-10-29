@@ -104,6 +104,7 @@ return retorno;
 void imprimirCliente_conMenosventasaCobrar(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
 {
     int i;
+    int contador=0;
     int menosventas=0;
     int idClientemenosVentas;
     int flagPrimeraCantidadminima=0;
@@ -115,27 +116,37 @@ void imprimirCliente_conMenosventasaCobrar(Cliente*clientes,Afiche*afiches,int t
                     idClientemenosVentas=clientes[i].id;
                     menosventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,idClientemenosVentas);
                     flagPrimeraCantidadminima=1;
+                    contador=1;
 
                 }
-                else if(clientes[i].estaVacio==FALSE && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)<menosventas && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
+                else
+                    if(clientes[i].estaVacio==FALSE && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)<menosventas && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
                 {
                      menosventas=cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,idClientemenosVentas);
                     idClientemenosVentas=clientes[i].id;
+                    contador=1;
+                }
+                else if(clientes[i].estaVacio==FALSE && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)==menosventas && cantidad_VentasaCobrarPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
+                {
+                    contador=2;
                 }
         }
-
-        if(menosventas>0)
+        if(menosventas>0 && contador==1)
         {
             printf("\nel cliente con menos ventas a cobrar es:\n");
             imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClientemenosVentas);
         }
-        else{printf("\nno hay ventas a cobrar\n");}
+        else
+        {
+            printf("\nno hay cliente con menos ventas a cobrar\n");
+        }
 }
 
 void imprimirCliente_conMenosventas_Cobradas(Cliente*clientes,Afiche*afiches,int tamanio_cliente,int tamanio_afiche)
 {
     int i;
     int menosventas=0;
+    int contador=0;
     int idClientemenosVentas;
     int flagPrimeraCantidadminima=0;
 
@@ -146,15 +157,20 @@ void imprimirCliente_conMenosventas_Cobradas(Cliente*clientes,Afiche*afiches,int
                     idClientemenosVentas=clientes[i].id;
                     menosventas=cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id);
                     flagPrimeraCantidadminima=1;
+                    contador=1;
                 }
                 else if(clientes[i].estaVacio==FALSE && cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id)<menosventas && cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
                 {
                     menosventas=cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id);
                     idClientemenosVentas=clientes[i].id;
-                }
+                    contador=1;
+                }else if(clientes[i].estaVacio==FALSE && cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id)==menosventas && cantidad_VentasCobradas_Posee_Cliente(afiches,tamanio_afiche,clientes[i].id>0))
+                         {
+                             contador=2;
+                         }
             }
 
-        if(menosventas>0 )
+        if(menosventas>0 && contador==1 )
         {
             printf("\nel cliente con menos ventas cobradas es:\n");
             imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClientemenosVentas);
@@ -166,6 +182,7 @@ void imprimirCliente_conMenosventas(Cliente*clientes,Afiche*afiches,int tamanio_
 {
     int i;
     int menosventas=0;
+    int contador=0;
     int idClientemenosVentas;
     int flagPrimeraCantidadminima=0;
 
@@ -176,20 +193,25 @@ void imprimirCliente_conMenosventas(Cliente*clientes,Afiche*afiches,int tamanio_
                     menosventas=cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id);
                     idClientemenosVentas=clientes[i].id;
                     flagPrimeraCantidadminima=1;
+                    contador=1;
                 }
                 else if(clientes[i].estaVacio==FALSE && cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)<menosventas && cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
                 {
                     menosventas=cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id);
                     idClientemenosVentas=clientes[i].id;
+                    contador=1;
+                }else if(clientes[i].estaVacio==FALSE && cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)==menosventas && cantidad_VentasaTotalPosee_Cliente(afiches,tamanio_afiche,clientes[i].id)>0)
+                {
+                    contador=2;
                 }
             }
 
-        if(menosventas>0)
+        if(menosventas>0 && contador==1)
         {
             printf("\nel cliente con menos ventas es:\n");
             imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClientemenosVentas);
         }
-        else{printf("\n no hay ventas \n");}
+        else{printf("\n no hay cliente con menos ventas \n");}
 }
 
 static int cantidadAfiches_acobrarsegunIdcliente(Afiche*afiches,int tamanio_afiches,int idcliente)
@@ -212,7 +234,7 @@ void imprimircliente_conMasAfiches_aCobrar(Cliente*clientes,Afiche*afiches,int t
     int mayorCantidadAcobrar=0;
     int idClienteMasafiches;
     int flag=0;
-
+    int contador=0;
         for(i=0;i<tamanio_cliente;i++)
         {
                 if( clientes[i].estaVacio==FALSE && flag==0)
@@ -220,20 +242,25 @@ void imprimircliente_conMasAfiches_aCobrar(Cliente*clientes,Afiche*afiches,int t
                     mayorCantidadAcobrar=cantidadAfiches_acobrarsegunIdcliente(afiches,tamanio_afiche,clientes[i].id);
                     idClienteMasafiches=clientes[i].id;
                     flag=1;
+                    contador=1;
                 }
                 else if(clientes[i].estaVacio==FALSE && cantidadAfiches_acobrarsegunIdcliente(afiches,tamanio_afiche,clientes[i].id)>mayorCantidadAcobrar)
                 {
                     mayorCantidadAcobrar=cantidadAfiches_acobrarsegunIdcliente(afiches,tamanio_afiche,clientes[i].id);
                     idClienteMasafiches=clientes[i].id;
+                    contador=1;
+                }else if(clientes[i].estaVacio==FALSE && cantidadAfiches_acobrarsegunIdcliente(afiches,tamanio_afiche,clientes[i].id)==mayorCantidadAcobrar)
+                {
+                    contador=2;
                 }
             }
 
-        if(mayorCantidadAcobrar>0)
+        if(mayorCantidadAcobrar>0 && contador==1)
         {
             printf("\nel cliente con mas afiches a cobrar es:\n");
             imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClienteMasafiches);
         }
-        else{printf("\nno hay afiches a cobrar\n");}
+        else{printf("\nno hay cliente con mas afiches a cobrar\n");}
 }
 
 static int cantidad_Afichesvendidospor_Zona(Afiche*afiches,int tamanio_afiche,int zonaElegida)
@@ -259,6 +286,7 @@ void imprimir_Zona_conmasAfichesVendidos(Afiche*afiches,int tamanio_afiche)
     int cantidadMaxima=0;
     int zona;
     int flag=0;
+    int contador=0;
 
     for(i=0;i<3;i++)
         {
@@ -272,14 +300,18 @@ void imprimir_Zona_conmasAfichesVendidos(Afiche*afiches,int tamanio_afiche)
                     cantidadMaxima=arreglo_afiches_vendidos[i];
                     zona=arreglo_zonas[i];
                     flag=1;
+                    contador=1;
                 }else if(arreglo_afiches_vendidos[i]>cantidadMaxima && arreglo_afiches_vendidos[i]>0)
                 {
                     cantidadMaxima=arreglo_afiches_vendidos[i];
                     zona=arreglo_zonas[i];
+                }else if(arreglo_afiches_vendidos[i]==cantidadMaxima && arreglo_afiches_vendidos[i]>0)
+                {
+                    contador=2;
                 }
         }
 
-        if(cantidadMaxima>0)
+        if(cantidadMaxima>0 && contador==1)
         {
         printf("\n la zona con mas afiches vendidos es:%d\n",zona);
         }
@@ -306,6 +338,7 @@ void imprimircliente_conMenosAfiches_vendidos(Cliente*clientes,Afiche*afiches,in
     int menorCantidad=0;
     int idClienteMenosfiches;
     int flag=0;
+    int contador=0;
 
         for(i=0;i<tamanio_cliente;i++)
         {
@@ -314,15 +347,20 @@ void imprimircliente_conMenosAfiches_vendidos(Cliente*clientes,Afiche*afiches,in
                     menorCantidad=cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id);
                     idClienteMenosfiches=clientes[i].id;
                     flag=1;
+                    contador=1;
                 }
                 else if(clientes[i].estaVacio==FALSE && cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id)<menorCantidad && cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id)>0)
                 {
                     menorCantidad=cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id);
                     idClienteMenosfiches=clientes[i].id;
+                    contador=1;
+                }else if(clientes[i].estaVacio==FALSE && cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id)==menorCantidad && cantidadAfiches_Vendidos_segunIdcliente(afiches,tamanio_afiche,clientes[i].id)>0)
+                {
+                    contador=2;
                 }
             }
 
-        if(menorCantidad>0)
+        if(menorCantidad>0 && contador==1)
         {
             printf("\nel cliente con menos afiches comprados es:\n");
             imprimir_cliente_porIdcliente(clientes,tamanio_cliente,idClienteMenosfiches);
